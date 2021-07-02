@@ -1,11 +1,11 @@
-import express from 'express';
-const app = express();
-const PORT = 3002;
-app.use(express.json());
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+import { DiscordBot } from './bot/DiscordBot';
+import { TYPES } from './config/types';
+import container from './config/inversify.config';
 
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`)
+const bot: DiscordBot = container.get<DiscordBot>(TYPES.Bot);
+
+bot.listen().then(() => {
+    console.log('Logged in!')
+}).catch((error) => {
+    console.log('Oh no! ', error)
 });
