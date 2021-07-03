@@ -1,3 +1,3 @@
 export enum Command {
-    Banish = "banish"
+    banish
 }

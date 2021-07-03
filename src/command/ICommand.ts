@@ -1,3 +1,7 @@
+import { Message } from "discord.js";
+import { Command } from "./Command";
+
 export interface ICommand {
-    execute(): void;
+    readonly name: Command;
+    execute(message: Message, args: string[]): void;
 }
