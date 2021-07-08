@@ -1,6 +1,6 @@
 import { Client, User, VoiceConnection } from 'discord.js';
 import { SpeechRecognitionService } from '../services/SpeechRecognitionService';
-import { convertStereoToMono, getDurationFromMonoBuffer } from '../utils/audio';
+import { AudioUtils } from '../utils/AudioUtils';
 import { SpeechMsg } from './SpeechMsg';
 
 export class SpeechEventHandler {
@@ -36,10 +36,10 @@ export class SpeechEventHandler {
 
     private async createSpeechMsg(bufferData: Uint8Array[], user: User, connection: VoiceConnection): Promise<SpeechMsg | void> {
         const stereoBuffer = Buffer.concat(bufferData);
-        const monoBuffer = convertStereoToMono(stereoBuffer);
+        const monoBuffer = AudioUtils.convertStereoToMono(stereoBuffer);
         console.log(monoBuffer);
 
-        const duration = getDurationFromMonoBuffer(stereoBuffer);
+        const duration = AudioUtils.getDurationFromMonoBuffer(stereoBuffer);
 
         if (duration < 1 || duration > 19) return;
 

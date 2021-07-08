@@ -8,7 +8,7 @@ export class SpeechRecognitionService {
 
     private readonly requestConfig: protos.google.cloud.speech.v1.IRecognitionConfig = {
         encoding: 'LINEAR16',
-        sampleRateHertz: 16000,
+        sampleRateHertz: 48000,
         languageCode: 'en-US'
     }
 
@@ -37,7 +37,7 @@ export class SpeechRecognitionService {
         return transcription;
     }
 
-    public getTranscriptionFromResponse(response: any) {
+    private getTranscriptionFromResponse(response: any) {
         return response.results?.map((res: any) => 
             res.alternatives[0].transcript).join('\n');
     }

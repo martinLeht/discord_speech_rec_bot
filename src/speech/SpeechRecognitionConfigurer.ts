@@ -9,7 +9,6 @@ import { SpeechEventHandler } from './SpeechEventHandler';
 export default class SpeechRecognitionConfigurer {
 
   private client: Client;
-  private speechRecognitionService: SpeechRecognitionService;
   private speechEventHandler: SpeechEventHandler;
 
   constructor(
@@ -17,7 +16,6 @@ export default class SpeechRecognitionConfigurer {
     @inject(TYPES.SpeechRecognitionService) speechRecognitionService: SpeechRecognitionService
   ) {
     this.client = client;
-    this.speechRecognitionService = speechRecognitionService;
     this.speechEventHandler = new SpeechEventHandler(client, speechRecognitionService);
   }
 
