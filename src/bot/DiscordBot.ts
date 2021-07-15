@@ -64,7 +64,16 @@ export class DiscordBot {
     });
 
     this.client.on('speech', (speechMsg: SpeechMsg) => {
-      if (speechMsg.content) speechMsg.author.send(speechMsg.content);
+      const msgContent = speechMsg.content;
+      if (msgContent)  {
+        if (msgContent.includes('fia nyholm') || msgContent.includes('Fia Nyholm') || msgContent.includes('fianyholm')) {
+          speechMsg.author.send("You have mentioned: " + msgContent);
+          speechMsg.author.send("NOW YOU WILL BE BANISHED!!");
+          speechMsg.voiceState.kick("You have been BANISHED (kick'd) for mentioning the forbidden name...");
+        } else {
+          speechMsg.author.send("Speech message: " + msgContent);
+        }
+      }
       else speechMsg.author.send("No content in speechMsg...");
     });
 

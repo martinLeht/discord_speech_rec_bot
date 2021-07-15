@@ -9,7 +9,7 @@ export class SpeechRecognitionService {
     private readonly requestConfig: protos.google.cloud.speech.v1.IRecognitionConfig = {
         encoding: 'LINEAR16',
         sampleRateHertz: 48000,
-        languageCode: 'en-US'
+        languageCode: 'fi-FI'
     }
 
     constructor() {

@@ -6,7 +6,7 @@ import { SpeechMsg } from './SpeechMsg';
 export class SpeechEventHandler {
 
     private client: Client;
-    private speechRecognitionService: SpeechRecognitionService
+    private speechRecognitionService: SpeechRecognitionService;
 
     constructor(client: Client, speechRecognitionService: SpeechRecognitionService) {
         this.client = client;
@@ -52,8 +52,12 @@ export class SpeechEventHandler {
             this.client.emit('error', new Error(err))
         }
         
+        const voiceState = connection.voice;
+        if (voiceState === undefined || voiceState === null) return;
+
         const speechMsg: SpeechMsg = new SpeechMsg(this.client, {
             author: user,
+            voiceState: voiceState,
             duration: duration,
             audioBuffer: stereoBuffer,
             content

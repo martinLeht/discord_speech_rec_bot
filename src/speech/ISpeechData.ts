@@ -1,8 +1,9 @@
-import { User } from "discord.js";
+import { User, VoiceState } from "discord.js";
 
 export interface ISpeechData {
     duration: number;
     audioBuffer: Buffer;
     content?: string,
-    author: User
+    author: User,
+    voiceState: VoiceState
 }

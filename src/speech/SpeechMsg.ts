@@ -1,4 +1,4 @@
-import {Client, Guild, GuildMember, User, VoiceChannel} from 'discord.js';
+import {Client, Guild, GuildMember, User, VoiceChannel, VoiceState} from 'discord.js';
 import wav from 'wav';
 import { ISpeechData } from './ISpeechData';
 
@@ -9,6 +9,7 @@ export class SpeechMsg {
    */
   content?: string;
   author: User;
+  voiceState: VoiceState;
   /**
    * Duration in seconds
    */
@@ -29,9 +30,11 @@ export class SpeechMsg {
     this.client = client;
     this.channel = channel;
     this.author = data.author;
+    this.voiceState = data.voiceState;
     this.audioBuffer = data.audioBuffer;
     this.duration = data.duration;
     this.content = data.content;
+
   }
 
   /**
